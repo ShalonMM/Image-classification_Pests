@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PestRy</title>
+    <!-- Tailwind CSS (Optional) -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS (Optional) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrollbars */
+}
+
+/* Background Video Styling */
+#video-bg {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+}
+
+/* Header Styles */
+header {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+header h1 {
+    color: rgb(251, 251, 251);
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    position: relative;
+}
+
+header a:hover {
+    text-decoration: underline;
+    /* Blue Shining Style */
+    background: linear-gradient(90deg, #1e3a8a, #48a9fe);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: shine 1.5s infinite;
+}
+
+header img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Animation for Shining Style */
+@keyframes shine {
+    to {
+        background-position-x: 200%;
+    }
+}
+
+
+footer {
+    background-color: #2b6cb0;
+    margin-bottom: 0px;
+}
+
+footer span,
+footer a {
+    color: white;
+}
+
+footer input {
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+/* Additional Styling */
+.upload-section {
+    margin-top: 8rem;
+    z-index: 1; /* Ensure it stays on top of the video */
+}
+
+/* Additional Styling for Result Section */
+.result-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.result-section h3 {
+    color: #2b6cb0;
+}
+
+.result-section p {
+    color: #6c757d;
+}
+
+/* Additional Styling for Carousel */
+#imageCarousel {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Spacing Between Sections */
+.section-spacing {
+    margin-bottom: 20px;
+}
+
+/* Animation for Shining Style */
+@keyframes shine {
+    to {
+        background-position-x: 200%;
+    }
+}
+
+    </style>
+</head>
+<body class="font-sans">
+
+    <!-- Background Video -->
+    <video id="video-bg" autoplay muted loop>
+        <source src="{{ url_for('static', filename='videos/pexels_videos_2547258 (2160p).mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Header Section -->
+    <header class="bg-transparent text-white p-4 flex justify-between items-center fixed w-full top-0">
+        <!-- Title -->
+        <h1>PestRy: Know your pests</h1>
+
+
+        <!-- Navigation Links -->
+        <!--<ul class="flex space-x-4">
+            <li><a href="#" class="text-white">Home</a></li>
+            <li><a href="#" class="text-white">Recent Predictions</a></li>
+            <li><a href="#" class="text-white">About Us</a></li>
+        </ul> -->
+
+        <!-- Logo -->
+       <!--<img src="logo.png" alt="Logo" class="w-8 h-8">--> 
+    </header>
+
+    <!-- Upload Section -->
+    <section class="bg-gray-100 py-8 upload-section section-spacing">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold mb-4">Login for classification</h2>
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Carousel Initialization Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var myCarousel = new bootstrap.Carousel(document.getElementById('imageCarousel'), {
+                interval: 2000,  // Set the interval between slides in milliseconds
+                wrap: true       // Set to false to disable wrap-around
+            });
+        });
+    </script>
+</body>
+</html>

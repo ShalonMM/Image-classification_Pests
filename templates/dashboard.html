@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<body>
+
+      <!-- Start Landing Page -->
+      <div class="landing-page">
+        <!-- User authentication -->
+        <div class="container">
+          
+              {% if user %}
+              <h2>Welcome to your Dashboard</h2>
+
+                  <p>user information</p>
+                  <ul>
+                      <li>Name : {{ user[1] }}</li>
+                      <li>Email : {{ user[2] }}</li>
+                  </ul>
+                  <a href="/logout" class="btn btn-dark">Logout</a>
+              {% endif %}
+          </div>
+          
+<body class="font-sans">
+
+    <!-- Background Video -->
+    <video id="video-bg" autoplay muted loop>
+        <source src="{{ url_for('static', filename='videos/pexels_videos_2547258 (2160p).mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Header Section -->
+    <header class="bg-transparent text-white p-4 flex justify-between items-center fixed w-full top-0">
+        <!-- Title -->
+
+        <!-- Navigation Links -->
+        <!--<ul class="flex space-x-4">
+            <li><a href="#" class="text-white">Home</a></li>
+            <li><a href="#" class="text-white">Recent Predictions</a></li>
+            <li><a href="#" class="text-white">About Us</a></li>
+        </ul> -->
+
+        <!-- Logo -->
+       <!--<img src="logo.png" alt="Logo" class="w-8 h-8">--> 
+    </header>
+
+    <!-- Upload Section -->
+    <section class="bg-gray-100 py-8 upload-section section-spacing">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold mb-4">Upload a pest for classification</h2>
+            <form method="POST" enctype="multipart/form-data">
+                <input type="file" name="image" accept="image/*" class="mb-2">
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer">Classify</button>
+            </form>
+
+            {% if image_loc %}
+                <img src="{{ url_for('static', filename=image_loc) }}" alt="Uploaded Image" class="w-full h-auto my-4">
+                <h2 class="text-lg font-bold">Prediction: {{ prediction }}</h2>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Result Section -->
+    <section class="result-section section-spacing">
+        <div class="container mx-auto flex justify-between items-stretch">
+            <!-- Carousel of Images -->
+            <div id="imageCarousel" class="carousel slide w-1/2 border-r-2 pr-8" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Placeholder carousel images (replace with actual images) -->
+                    <div class="carousel-item active">
+                        <img src="{{ url_for('static', filename='imgs/AdobeStock_562362101_Preview.jpeg') }}" alt="Image 1" class="w-full h-40 object-cover">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='imgs/AdobeStock_604906803_Preview.jpeg') }}" alt="Image 2" class="w-full h-40 object-cover">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for('static', filename='imgs/AdobeStock_650857580_Preview.jpeg') }}" alt="Image 2" class="w-full h-40 object-cover">
+                    </div>
+                    <!-- Add more carousel items as needed -->
+                </div>
+            </div>
+
+            <!-- Brief Paragraph About Crop Pests -->
+            <div class="w-1/2 pl-8">
+                <h3 class="text-xl font-bold mb-4">About Crop Pests</h3>
+                <p class="text-gray-600">
+                    Crop pests are any and all organic life that affects plants and crops. From biological fungi and bacteria to crawling critters such as 
+                    worms and other insects and large organisms such as birds.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white p-4 mt-8">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex space-x-4">
+                <!-- Search Box....making it a link to the blog -->
+                <div class="flex items-center">
+                    <label for="search" class="sr-only">Learn, Share, Connect...</label>
+                    <input type="text" id="search" name="search" placeholder="Learn, Share, Connect..." class="bg-gray-700 px-2 py-1 rounded">
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="h-5 w-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                    <!--<span>(email@example.com)</span>-->
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="h-5 w-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 20a1 1 0 01-2 0c0-3.879-3.121-7-7-7s-7 3.121-7 7a1 1 0 01-2 0 5 5 0 1110 0z">
+                        </path>
+                    </svg>
+                   <!--<span>(123) 456-7890</span>-->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Carousel Initialization Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var myCarousel = new bootstrap.Carousel(document.getElementById('imageCarousel'), {
+                interval: 2000,  // Set the interval between slides in milliseconds
+                wrap: true       // Set to false to disable wrap-around
+            });
+        });
+    </script>
+{% endblock%}
